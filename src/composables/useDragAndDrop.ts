@@ -13,12 +13,10 @@ import { getBasicData } from '../data/people'
 import { useRegistry } from './useRegistry'
 
 export function useDragAndDrop() {
+  const base = getBasicData()
   const data = ref<BoardState>({
-    const base = getBasicData()
-    return {
-      ...base,
-      lastOperation: null,
-    }
+    ...base,
+    lastOperation: null,
   })
 
   const registry = useRegistry()
