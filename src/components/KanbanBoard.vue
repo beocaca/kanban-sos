@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center gap-4 h-[480px]">
+  <div class="flex justify-center gap-4 h-[480px] w-full">
     <KanbanColumn
       v-for="columnId in data.orderedColumnIds"
       :key="columnId"
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watch, provide } from 'vue'
 import { useDragAndDrop } from '../composables/useDragAndDrop'
 import KanbanColumn from './KanbanColumn.vue'
 
@@ -33,6 +33,19 @@ const {
   instanceId,
   handlePostMoveEffects,
 } = useDragAndDrop()
+
+// Provide board context to child components
+const boardContext = {
+  getColumns,
+  reorderColumn,
+  reorderCard,
+  moveCard,
+  registerCard,
+  registerColumn,
+  instanceId,
+}
+
+provide('boardContext', boardContext)
 
 // Watch for operations and handle post-move effects
 watch(

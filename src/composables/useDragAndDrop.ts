@@ -13,7 +13,7 @@ import { getBasicData } from '../data/people'
 import { useRegistry } from './useRegistry'
 
 export function useDragAndDrop() {
-  const data = ref<BoardState>(() => {
+  const data = ref<BoardState>({
     const base = getBasicData()
     return {
       ...base,

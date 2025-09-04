@@ -55,7 +55,7 @@ const props = defineProps<Props>()
 const isMenuOpen = ref(false)
 
 // Inject board context (we'll need to pass this down)
-const boardContext = inject<any>('boardContext')
+const boardContext = inject<any>('boardContext', null)
 
 const columns = computed(() => boardContext?.getColumns() || [])
 const startIndex = computed(() => 
@@ -74,7 +74,25 @@ const closeMenu = () => {
 }
 
 const moveLeft = () => {
-  boardContext?.reorderColumn({
+  if (boardContext) {
+    boardContext.reorderColumn({
+      startIndex: startIndex.value,
+      finishIndex: startIndex.value - 1,
+    })
+  }
+  closeMenu()
+}
+
+const moveRight = () => {
+  if (boardContext) {
+    boardContext.reorderColumn({
+      startIndex: startIndex.value,
+      finishIndex: startIndex.value + 1,
+    })
+  }
+  closeMenu()
+}
+</script>
     startIndex: startIndex.value,
     finishIndex: startIndex.value - 1,
   })
