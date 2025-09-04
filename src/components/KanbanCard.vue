@@ -186,12 +186,10 @@ onMounted(() => {
       },
       onDrag: (args) => {
         if (args.source.data.itemId !== props.item.userId) {
-          // Only show indicator if this is the primary (first) drop target
-          const isFirstTarget = args.location.current.dropTargets[0]?.data.itemId === props.item.userId
-          if (isFirstTarget) {
-            closestEdge.value = extractClosestEdge(args.self.data)
-          } else {
-            closestEdge.value = null
+          const edge = extractClosestEdge(args.self.data)
+          // Only show one edge indicator per card - prioritize top edge
+          if (edge === 'top' || (edge === 'bottom' && closestEdge.value !== 'top')) {
+            closestEdge.value = edge
           }
         }
       },
