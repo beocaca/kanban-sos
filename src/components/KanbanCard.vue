@@ -184,6 +184,8 @@ onMounted(() => {
           closestEdge.value = edge
         }
       },
+      onDrag: (args) => {
+        if (args.source.data.itemId !== props.item.userId) {
           const edge = extractClosestEdge(args.self.data)
           // Only show one edge indicator per card - prioritize top edge
           if (edge === 'top' || (edge === 'bottom' && closestEdge.value !== 'top')) {
