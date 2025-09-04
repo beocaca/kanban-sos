@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/Users/namnguyen/Downloads/kanban-vue/**)",
+      "Read(/Users/namnguyen/Downloads/kanban-vue/**)",
+      "Read(/Users/namnguyen/Downloads/kanban-vue/**)",
+      "Bash(npm install:*)",
+      "Bash(npx:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
