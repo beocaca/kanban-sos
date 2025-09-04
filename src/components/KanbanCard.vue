@@ -186,10 +186,13 @@ onMounted(() => {
       },
       onDrag: (args) => {
         if (args.source.data.itemId !== props.item.userId) {
-          const edge = extractClosestEdge(args.self.data)
-          // Only show indicator if this is the closest target
-          const isClosestTarget = args.location.current.dropTargets[0]?.data.itemId === props.item.userId
-          closestEdge.value = isClosestTarget ? edge : null
+          // Only show indicator if this is the primary (first) drop target
+          const isFirstTarget = args.location.current.dropTargets[0]?.data.itemId === props.item.userId
+          if (isFirstTarget) {
+            closestEdge.value = extractClosestEdge(args.self.data)
+          } else {
+            closestEdge.value = null
+          }
         }
       },
       onDragLeave: () => {
