@@ -93,17 +93,3 @@ const moveRight = () => {
   closeMenu()
 }
 </script>
-    startIndex: startIndex.value,
-    finishIndex: startIndex.value - 1,
-  })
-  closeMenu()
-}
-
-const moveRight = () => {
-  boardContext?.reorderColumn({
-    startIndex: startIndex.value,
-    finishIndex: startIndex.value + 1,
-  })
-  closeMenu()
-}
-</script>
